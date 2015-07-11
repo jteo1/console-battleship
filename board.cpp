@@ -28,7 +28,7 @@ int Board::attemptToPlaceShip(int row, int col, char dir, int size, marker shipN
 			{
 				return 0;
 			}
-		}	
+		}
 
 		for(int i = 0; i < size; i++)
 		{
@@ -136,7 +136,7 @@ char Board::getBoardCoordinate(int row, int col)
 {
 	if(row < 0 || row > 9 || col < 0 || col > 9)
 	{
-		return NULL;
+		return (char)NULL;
 	}
 	return board[row][col];
 }

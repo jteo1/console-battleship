@@ -45,14 +45,14 @@ int main()
 			showComputerBoard = true;
 		}
 
-		
+
 		break;
 	}
-	
+
 	cout << "\nTo place a ship, simply enter the coordinate and the direction, where direction is denoted by a singluar character l, u, r, or d. For example, placing a ship at A4 facing rightwards would be denoted by A4r. Please use this exact format with a total of 3 characters.\n" << endl;
 	cout << "Player Board: " << endl;
 	player.printBoard();
-	
+
 	//set up game boards for player and CPU
 	computer.initializeShips();
 	cout << "\nComputer Board: " << endl;
@@ -66,7 +66,7 @@ int main()
 	}
 	//Selecting player ship placement
 	getShipInputs(&player);
-	
+
 	//Begin firing
 	int round = 1;
 	while(1)
@@ -89,7 +89,7 @@ int main()
 		cout << "Player fires at: " << playerInput[0] << playerInput[1] << endl;
 
 		//ask cpu if target is a hit, updates board
-		int playerShot = computer.attemptHit(r, c); 
+		int playerShot = computer.attemptHit(r, c);
 		if(playerShot == -1)
 		{
 			cout << "Invalid coordinates, try again" << endl;
@@ -106,10 +106,14 @@ int main()
 			if(computer.getLives() == 0)
 			{
 				cout << "Player wins!" << endl;
+				cout << "Player Board: " << endl;
+				player.printBoard();
+				cout << "Computer Board: " << endl;
+				computer.printHiddenBoard();
 				break;
 			}
 		}
-		
+
 		//computer fires
 		int computerShot;
 		computerShot = computer.fireAtPlayer(smartAI, &player); //delegate work of choosing coordinates and firing to computer class
@@ -124,12 +128,14 @@ int main()
 			if(player.getLives() == 0)
 			{
 				cout << "Computer wins!" << endl;
+				cout << "Player Board: " << endl;
+				player.printBoard();
 				cout << "Computer Board was: " << endl;
 				computer.printBoard();
 				break;
 			}
 		}
-		
+
 
 		//print out board states
 		cout << "Player Board: " << endl;
@@ -153,7 +159,7 @@ int main()
 }
 
 //initializes the player's board by getting inputs
-//input: pointer to a Player class 
+//input: pointer to a Player class
 //outut: n/a
 void getShipInputs(Player* pb)
 {

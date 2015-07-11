@@ -1,7 +1,7 @@
 #ifndef _BOARD_
 #define _BOARD_
 using namespace std;
-				
+
 
 #define SHIP2SUNK 2
 #define SHIP3SUNK 3
@@ -10,8 +10,8 @@ using namespace std;
 
 
 						//2length ship, 3length ship #1, 3length ship #2, 4length ship, 5 length ship
-enum marker : char {EMPTY = '.', SHIP2 = '1', SHIP31 = '2', SHIP32 = '3', SHIP4 = '4', SHIP5 = '5', HIT = 'x', MISS = '-'};
-enum direction : char {UP = 'u', DOWN = 'd', LEFT = 'l', RIGHT = 'r', NONE = '0'}; 
+enum marker : char {EMPTY = '.', SHIP2 = '1', SHIP31 = '2', SHIP32 = '3', SHIP4 = '4', SHIP5 = '5', HIT = 'x', MISS = '~'};
+enum direction : char {UP = 'u', DOWN = 'd', LEFT = 'l', RIGHT = 'r', NONE = '0'};
 
 class Board
 {
