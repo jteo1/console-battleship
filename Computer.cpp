@@ -12,7 +12,7 @@ Computer::Computer() : lives(5+4+3+3+2), dir(UP), followDir(false), switchedDir(
 
 	initialHit[0] = -1;
 	initialHit[1] = -1;
-	
+
 }
 
 //converts the random number to a direction
@@ -31,7 +31,7 @@ char Computer::intToDir(int num)
 		return LEFT;
 	case 3:
 		return RIGHT;
-	default: 
+	default:
 		return 0;
 	}
 }
@@ -246,7 +246,7 @@ int Computer::fireAtPlayer(bool smartAI, Player* p)
 				if(hit == SHIP5SUNK || hit == SHIP4SUNK || hit == SHIP3SUNK || hit == SHIP2SUNK)
 				{
 					resetSmartVariables();
-					
+
 				}
 				else if(hit == 1)
 				{
@@ -277,7 +277,7 @@ int Computer::fireAtPlayer(bool smartAI, Player* p)
 					else if(switchedAxis == false)
 					{
 						//switch axis
-						//cout << "SWITCHING AXIS" << endl;	
+						//cout << "SWITCHING AXIS" << endl;
 						switchedAxis = true;
 						cycleNextDirection();
 
@@ -303,7 +303,7 @@ int Computer::fireAtPlayer(bool smartAI, Player* p)
 								switchedDir = false;
 								switchedAxis = true;
 								cycleNextDirection();
-							} 
+							}
 							else
 							{
 							setOppositeDirection();
@@ -312,8 +312,8 @@ int Computer::fireAtPlayer(bool smartAI, Player* p)
 							hit = tryDirection(initialHit[0], initialHit[1], dir, currentDirLength, p);
 						}
 					}while(hit == -1);
-					
-					
+
+
 				}
 				//else
 				//{
@@ -321,7 +321,7 @@ int Computer::fireAtPlayer(bool smartAI, Player* p)
 				{
 					//cout << "DEBUG: SHIP SANK, back to random" << endl;
 					resetSmartVariables();
-					
+
 				}
 				else if(hit == 1)
 				{
@@ -380,7 +380,7 @@ int Computer::tryDirection(unsigned int row, unsigned int col, direction dir, un
 
 	cout << "Computer fires at: " << (char)('A' + row) << col << endl;
 	result = p->attemptHit(row, col);
-	
+
 	//some sort of hit occured
 	if(result > 0)
 	{
@@ -427,7 +427,7 @@ void Computer::resetSmartVariables()
 	dir = UP;
 }
 
-//return opposite direction of the current direction
+//sets dir to opposite direction of the current direction
 void Computer::setOppositeDirection()
 {
 	if(dir == UP)
@@ -445,6 +445,9 @@ void Computer::setOppositeDirection()
 	switchedDir = true;
 }
 
+//Make a random shot at the player
+//input: player to fire at
+//output: 0 for miss, 1 for hit
 int Computer::makeRandomShot(Player* p)
 {
 	unsigned int row, col;
@@ -458,7 +461,7 @@ int Computer::makeRandomShot(Player* p)
 
 	cout << "Computer fires at: " << (char)('A' + row) << col << endl;
 	int hit = p->attemptHit(row, col);
-	if(hit == 1)
+	if(hit > 0)
 	{
 		//found a coordinate; ship found
 		currentDirLength = 1;

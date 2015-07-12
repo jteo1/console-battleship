@@ -67,7 +67,7 @@ int main()
 	//Selecting player ship placement
 	getShipInputs(&player);
 
-	//Begin firing
+	//GAME BEGINS
 	int round = 1;
 	while(1)
 	{
